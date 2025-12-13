@@ -29,13 +29,13 @@ if __name__ == '__main__':
     debug = debugManager()
 
     firstTime, firstMem = debug.measureWithTimeit(
-        lambda: findValueDFS(nodes, valueToSearch, valueOfNodes, startNode),
+        lambda: findValueBFSList(nodes, valueToSearch, valueOfNodes, startNode),
         runs=1000
     )
     debug.addFirstFunction(firstTime, firstMem)
 
     secondTime, secondMem = debug.measureWithTimeit(
-        lambda: findValueDFSList(nodes, valueToSearch, valueOfNodes, startNode),
+        lambda: findValueBFS(nodes, valueToSearch, valueOfNodes, startNode),
         runs=1000
     )
     debug.addSecondFunction(secondTime, secondMem)
