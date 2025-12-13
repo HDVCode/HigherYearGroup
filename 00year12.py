@@ -120,6 +120,7 @@ if __name__ == '__main__':
 
     # Build graph structure
     nodes = []
+
     amountOfNodes = int(input("Enter amount of nodes: "))
     amountOfConnections = int(input("Enter amount of connections: "))
 
