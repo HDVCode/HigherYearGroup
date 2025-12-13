@@ -45,6 +45,26 @@ def findValueDFS(nodes, valueToFind, valueOfNodes, startNode):
     return -1
 
 
+def findValueDFSRecursive(nodes, valueToFind, valueOfNodes, currentNode, visited=None):
+    if visited is None:
+        visited = set()
+
+    if currentNode in visited:
+        return -1
+
+    visited.add(currentNode)
+
+    if valueOfNodes[currentNode] == valueToFind:
+        return currentNode
+
+    for child in nodes[currentNode]:
+        result = findValueDFSRecursive(nodes, valueToFind, valueOfNodes, child, visited)
+        if result != -1:
+            return result
+
+    return -1
+
+
 def findValueBFSList(nodes, valueToFind, valueOfNodes, startNode):
     queue = [startNode]
     visited = set()

@@ -1,5 +1,5 @@
 from debugManager import debugManager, displayResults
-from searchAlgos import findValueDFS, findValueDFSList, findValueBFS, findValueBFSList
+from searchAlgos import findValueDFS, findValueDFSList, findValueBFS, findValueBFSList, findValueDFSRecursive
 
 if __name__ == '__main__':
 
@@ -29,13 +29,13 @@ if __name__ == '__main__':
     debug = debugManager()
 
     firstTime, firstMem = debug.measureWithTimeit(
-        lambda: findValueBFSList(nodes, valueToSearch, valueOfNodes, startNode),
+        lambda: findValueDFS(nodes, valueToSearch, valueOfNodes, startNode),
         runs=1000
     )
     debug.addFirstFunction(firstTime, firstMem)
 
     secondTime, secondMem = debug.measureWithTimeit(
-        lambda: findValueBFS(nodes, valueToSearch, valueOfNodes, startNode),
+        lambda: findValueDFSRecursive(nodes, valueToSearch, valueOfNodes, startNode),
         runs=1000
     )
     debug.addSecondFunction(secondTime, secondMem)
