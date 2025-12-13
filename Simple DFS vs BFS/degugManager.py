@@ -1,85 +1,83 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import time
+import timeit
 import tracemalloc
 
-# ----- Debug Manager -----
 
 class debugManager:
 
     def __init__(self):
-        self.method = None
-        self.startTime = None
-        self.dfsTimeLog = []
-        self.dfsSpaceLog = []
-        self.bfsTimeLog = []
-        self.bfsSpaceLog = []
+        self.firstFunctionTimeLog = []
+        self.firstFunctionSpaceLog = []
+        self.secondFunctionTimeLog = []
+        self.secondFunctionSpaceLog = []
 
-    def start(self, method):
-        self.startTime = time.perf_counter()
+    def measureWithTimeit(self, func, runs=1000):
+        avgTime = timeit.timeit(func, number=runs) / runs
+
         tracemalloc.start()
-        self.method = method
-
-    def stop(self):
-        end = time.perf_counter()
+        func()
         current, peak = tracemalloc.get_traced_memory()
         tracemalloc.stop()
 
-        if self.method == "DFS":
-            self.dfsTimeLog.append(end - self.startTime)
-            self.dfsSpaceLog.append(peak / 1024)
-        elif self.method == "BFS":
-            self.bfsTimeLog.append(end - self.startTime)
-            self.bfsSpaceLog.append(peak / 1024)
+        return avgTime, peak / 1024
 
-    def get_last_dfs(self):
-        if self.dfsTimeLog:
-            return self.dfsTimeLog[-1], self.dfsSpaceLog[-1]
+    def addFirstFunction(self, timeVal, memVal):
+        self.firstFunctionTimeLog.append(timeVal)
+        self.firstFunctionSpaceLog.append(memVal)
+
+    def addSecondFunction(self, timeVal, memVal):
+        self.secondFunctionTimeLog.append(timeVal)
+        self.secondFunctionSpaceLog.append(memVal)
+
+    def getLastFirstFunction(self):
+        if self.firstFunctionTimeLog:
+            return self.firstFunctionTimeLog[-1], self.firstFunctionSpaceLog[-1]
         return None, None
 
-    def get_last_bfs(self):
-        if self.bfsTimeLog:
-            return self.bfsTimeLog[-1], self.bfsSpaceLog[-1]
+    def getLastSecondFunction(self):
+        if self.secondFunctionTimeLog:
+            return self.secondFunctionTimeLog[-1], self.secondFunctionSpaceLog[-1]
         return None, None
 
     def plotComparison(self, label):
         x = np.arange(1)
         width = 0.35
 
-        # Time plot
         fig, ax = plt.subplots(figsize=(10, 5))
-        ax.bar(x - width / 2, self.dfsTimeLog, width, label='DFS Time')
-        ax.bar(x + width / 2, self.bfsTimeLog, width, label='BFS Time')
+        ax.bar(x - width / 2, self.firstFunctionTimeLog, width, label='First Function Time')
+        ax.bar(x + width / 2, self.secondFunctionTimeLog, width, label='Second Function Time')
         ax.set_ylabel('Time (seconds)')
-        ax.set_title('DFS vs BFS Search Time')
+        ax.set_title('First Function vs Second Function Search Time')
         ax.set_xticks(x)
         ax.set_xticklabels([label])
         ax.legend()
         plt.show()
 
-        # Space plot
         fig, ax = plt.subplots(figsize=(10, 5))
-        ax.bar(x - width / 2, self.dfsSpaceLog, width, label='DFS Space')
-        ax.bar(x + width / 2, self.bfsSpaceLog, width, label='BFS Space')
+        ax.bar(x - width / 2, self.firstFunctionSpaceLog, width, label='First Function Space')
+        ax.bar(x + width / 2, self.secondFunctionSpaceLog, width, label='Second Function Space')
         ax.set_ylabel('Memory (KB)')
-        ax.set_title('DFS vs BFS Peak Memory')
+        ax.set_title('First Function vs Second Function Peak Memory')
         ax.set_xticks(x)
         ax.set_xticklabels([label])
         ax.legend()
         plt.show()
 
 
-def displayResults(debug, resultDFS, resultBFS, valueToSearch):
-    # Display results
-    dfsTime, dfsMemory = debug.get_last_dfs()
-    bfsTime, bfsMemory = debug.get_last_bfs()
+def displayResults(debug, resultFirstFunc, resultSecondFunc, valueToSearch):
 
-    print(f"\nDFS: {'Found at node ' + str(resultDFS + 1) if resultDFS != -1 else 'Not found'}")
-    print(f"     Time: {dfsTime:.6f}s | Memory: {dfsMemory:.2f} KB")
+    firstTime, firstMemory = debug.getLastFirstFunction()
+    secondTime, secondMemory = debug.getLastSecondFunction()
 
-    print(f"\nBFS: {'Found at node ' + str(resultBFS + 1) if resultBFS != -1 else 'Not found'}")
-    print(f"     Time: {bfsTime:.6f}s | Memory: {bfsMemory:.2f} KB")
+    print(f"\nFirst Function: {'Found at node ' + str(resultFirstFunc + 1) if resultFirstFunc != -1 else 'Not found'}")
+    print(f"     Time: {firstTime:.9f}s | Memory: {firstMemory:.2f} KB")
 
-    # Show comparison
+    print(f"\nSecond Function: {'Found at node ' + str(resultSecondFunc + 1) if resultSecondFunc != -1 else 'Not found'}")
+    print(f"     Time: {secondTime:.9f}s | Memory: {secondMemory:.2f} KB")
+
+    if firstTime and secondTime:
+        speedup = firstTime / secondTime
+        print(f"\nSpeedup: {speedup:.2f}x {'(Second faster)' if speedup > 1 else '(First faster)'}")
+
     debug.plotComparison(f"Search for value {valueToSearch}")
-

@@ -1,11 +1,8 @@
-from degugManager import debugManager, displayResults
-from searchAlgos import findValueDFS, findValueBFS
-
-# ------ Main ------
+from debugManager import debugManager, displayResults
+from searchAlgos import findValueDFS, findValueDFSList, findValueBFS, findValueBFSList
 
 if __name__ == '__main__':
 
-    # Build graph structure
     nodes = []
 
     amountOfNodes = int(input("Enter amount of nodes: "))
@@ -14,35 +11,36 @@ if __name__ == '__main__':
     for i in range(amountOfNodes):
         nodes.append([])
 
-    connections_input = input("Enter all connections: ").split()
+    connectionsInput = input("Enter all connections: ").split()
 
     for i in range(0, amountOfConnections * 2, 2):
-        nodeToAddTo = int(connections_input[i])
-        nodeToAdd = int(connections_input[i + 1])
+        nodeToAddTo = int(connectionsInput[i])
+        nodeToAdd = int(connectionsInput[i + 1])
         nodes[nodeToAddTo - 1].append(nodeToAdd - 1)
 
     print("Nodes Added")
 
     valueOfNodes = list(range(1, amountOfNodes + 1))
 
-    # Search setup
     print("\n--- Search Test ---")
     valueToSearch = int(input("Enter value to search for: "))
     startNode = 0
 
     debug = debugManager()
 
-    # Run DFS
-    debug.start("DFS")
-    resultDFS = findValueDFS(nodes, valueToSearch, valueOfNodes, startNode)
-    debug.stop()
+    firstTime, firstMem = debug.measureWithTimeit(
+        lambda: findValueDFS(nodes, valueToSearch, valueOfNodes, startNode),
+        runs=1000
+    )
+    debug.addFirstFunction(firstTime, firstMem)
 
-    # Run BFS
-    debug.start("BFS")
-    resultBFS = findValueBFS(nodes, valueToSearch, valueOfNodes, startNode)
-    debug.stop()
+    secondTime, secondMem = debug.measureWithTimeit(
+        lambda: findValueDFSList(nodes, valueToSearch, valueOfNodes, startNode),
+        runs=1000
+    )
+    debug.addSecondFunction(secondTime, secondMem)
 
-    # ------- Dont look at this lol -------
+    resultFirst = findValueDFS(nodes, valueToSearch, valueOfNodes, startNode)
+    resultSecond = findValueDFSList(nodes, valueToSearch, valueOfNodes, startNode)
 
-    displayResults(debug, resultDFS, resultBFS, valueToSearch)
-
+    displayResults(debug, resultFirst, resultSecond, valueToSearch)
