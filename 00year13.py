@@ -27,6 +27,10 @@ class debugManager:
 
         self.method = None
         self.startTime = None
+
+        self.dfsRecTimeLog = []
+        self.dfsRecSpaceLog = []
+
         self.dfsTimeLog = []
         self.dfsSpaceLog = []
 
@@ -62,6 +66,11 @@ class debugManager:
             self.bfsSpaceLog.append(peak / 1024)
 
 
+        elif self.method == "DFS_RECURSIVE":
+            self.dfsRecTimeLog.append(elapsed)
+            self.dfsRecSpaceLog.append(peak_kb)
+
+
     # Get last measurement of DFS debug
     def get_last_dfs(self):
         if self.dfsTimeLog:
@@ -75,23 +84,40 @@ class debugManager:
         return None, None
 
 
-    # Clear all past debug info
-    def clear(self):
+    def get_last_dfs_recursive(self):
+        if self.dfsRecTimeLog:
+            return self.dfsRecTimeLog[-1], self.dfsRecSpaceLog[-1]
+        return None, None
 
+
+    # Clear all past debug info
+
+    def clear(self):
         self.dfsTimeLog.clear()
         self.dfsSpaceLog.clear()
+
+        self.dfsRecTimeLog.clear()
+        self.dfsRecSpaceLog.clear()
+
         self.bfsTimeLog.clear()
         self.bfsSpaceLog.clear()
 
+
     # Plot comparing the current BFS vs DFS info gathered
-    def plotComparison(self, keys):
+    def plotComparison(self, keys, show_recursive=False):
         x = np.arange(len(keys))
-        width = 0.35
+        width = 0.25 if show_recursive else 0.35
 
         # --- Time plot ---
         fig, ax = plt.subplots(figsize=(10, 5))
-        ax.bar(x - width / 2, self.dfsTimeLog, width, label='DFS Time')  # fixed variable name
-        ax.bar(x + width / 2, self.bfsTimeLog, width, label='BFS Time')  # fixed variable name
+
+        ax.bar(x - width, self.dfsTimeLog, width, label='Iterative DFS Time')
+
+        if show_recursive:
+            ax.bar(x, self.dfsRecTimeLog, width, label='Recursive DFS Time')
+
+        ax.bar(x + width, self.bfsTimeLog, width, label='BFS Time')
+
         ax.set_ylabel('Time (seconds)')
         ax.set_title('DFS vs BFS Decryption Time per Key')
         ax.set_xticks(x)
@@ -101,8 +127,14 @@ class debugManager:
 
         # --- Space plot ---
         fig, ax = plt.subplots(figsize=(10, 5))
-        ax.bar(x - width / 2, self.dfsSpaceLog, width, label='DFS Space')  # fixed variable name
-        ax.bar(x + width / 2, self.bfsSpaceLog, width, label='BFS Space')  # fixed variable name
+
+        ax.bar(x - width, self.dfsSpaceLog, width, label='Iterative DFS Space')
+
+        if show_recursive:
+            ax.bar(x, self.dfsRecSpaceLog, width, label='Recursive DFS Space')
+
+        ax.bar(x + width, self.bfsSpaceLog, width, label='BFS Space')
+
         ax.set_ylabel('Memory (KB)')
         ax.set_title('DFS vs BFS Peak Memory per Key')
         ax.set_xticks(x)
@@ -189,7 +221,7 @@ class keyBranchNode:
         return decrypt(self.key, message)
 
 
-    def decryptMessageWithSubNodesKeyDFS(self, message, keyUsed, debug=None, top=True):
+    def decryptMessageWithSubNodesKeyDFSRecursive(self, message, keyUsed, debug=None, top=True):
 
         if top and debug:
 
@@ -217,6 +249,31 @@ class keyBranchNode:
             debug.stop()
 
         return result
+
+
+    def decryptMessageWithSubNodesKeyDFS(self, message, keyUsed, debug=None):
+
+        if debug:
+            debug.start("DFS")
+
+        stack = [self]
+
+        while stack:
+            node = stack.pop()
+
+            if node.keyTitle == keyUsed:
+
+                if debug:
+                    debug.stop()
+
+                return decrypt(node.key, message)
+
+            stack.extend(reversed(node.children))
+
+        if debug:
+            debug.stop()
+
+        return -1
 
 
     def decryptMessageWithSubNodesKeyBFS(self, message, keyUsed, debug=None):
@@ -254,6 +311,7 @@ class keyBranchNode:
         return result
 
 
+
 # ---------------- Main ----------------
 
 def main():
@@ -282,4 +340,41 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+
+    debug = debugManager()
+
+    # -------- Build key tree --------
+    root_key = Fernet.generate_key()
+    child1_key = Fernet.generate_key()
+    child2_key = Fernet.generate_key()
+
+    root = keyBranchNode("root", root_key)
+    child1 = keyBranchNode("child1", child1_key)
+    child2 = keyBranchNode("child2", child2_key)
+
+    root.addChild(child1)
+    root.addChild(child2)
+
+    # -------- Encrypt message with child2 key --------
+    message = "HELLO DFS/BFS"
+    encrypted = encrypt(child2_key, message)
+
+    # -------- Run Iterative DFS --------
+    root.decryptMessageWithSubNodesKeyDFS(
+        encrypted, "child2", debug=debug
+    )
+
+    # -------- Run Recursive DFS (optional) --------
+    if show_recursive:
+        root.decryptMessageWithSubNodesKeyDFSRecursive(
+            encrypted, "child2", debug=debug
+        )
+
+    # -------- Run BFS --------
+    root.decryptMessageWithSubNodesKeyBFS(
+        encrypted, "child2", debug=debug
+    )
+
+    # -------- Plot results --------
+    keys = ["child2"]
+    debug.plotComparison(keys, show_recursive=show_recursive)
