@@ -1,11 +1,8 @@
-from cryptography.fernet import Fernet
-
 from _init_ import initializeAllMessages, createCompanyTree
-from classes import infoBranchNode, keyBranchNode, debugManager
 
 # ---------------- Main ----------------
 
-if __name__ == "__main__":
+def main():
     # Get the tree with keys
     root = createCompanyTree()
 
@@ -15,7 +12,10 @@ if __name__ == "__main__":
     # Now use root for tree operations
     print(root.getAllKeysInSubtreeFormatted(0))
 
-    rootMessages = messagesData["Ceo"]
+    rootMessages = messagesData["HrHead"]
 
     print(rootMessages.getDataEncrypted())
-    print(root.decryptMessageWithSelfKey(rootMessages.getDataEncrypted()))
+    print(root.decryptMessageWithSubNodesKeyDFS(rootMessages.getDataEncrypted(), rootMessages.getKeyUsed()))
+
+if __name__ == "__main__":
+    main()

@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="584c0f47-b1f0-4d0f-9a8e-8b9ac4f2f8fc" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BinaryTreeInputs/65,536.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BinaryTreeInputs/65,536.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Simple DFS vs BFS/mainTryMultiple.py" beforeDir="false" afterPath="$PROJECT_DIR$/Simple DFS vs BFS/mainTryMultiple.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Simple DFS vs BFS/searchAlgos.py" beforeDir="false" afterPath="$PROJECT_DIR$/Simple DFS vs BFS/searchAlgos.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Theoretical Key Tree/classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Theoretical Key Tree/classes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Theoretical Key Tree/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Theoretical Key Tree/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
