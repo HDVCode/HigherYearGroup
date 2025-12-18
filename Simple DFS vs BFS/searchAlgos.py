@@ -18,7 +18,7 @@ def findValueDFSList(nodes, valueToFind, valueOfNodes, startNode):
         if valueOfNodes[current] == valueToFind:
             return current
 
-        for child in reversed(nodes[current]):
+        for child in nodes[current]:
             stack.append(child)
 
     return -1
@@ -39,7 +39,7 @@ def findValueDFS(nodes, valueToFind, valueOfNodes, startNode):
         if valueOfNodes[current] == valueToFind:
             return current
 
-        for child in reversed(nodes[current]):
+        for child in nodes[current]:
             stack.append(child)
 
     return -1
