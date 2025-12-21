@@ -1,4 +1,4 @@
-from degugManager import debugManager, displayResults
+from debugManager import debugManager, displayResults
 from searchAlgos import findValueDFS, findValueDFSList, findValueBFS, findValueBFSList
 
 if __name__ == '__main__':
@@ -33,7 +33,7 @@ if __name__ == '__main__':
     debug.stop()
 
     debug.start("SecondFunction")
-    resultSecond = findValueBFSList(nodes, valueToSearch, valueOfNodes, startNode)
+    resultSecond = findValueBFS(nodes, valueToSearch, valueOfNodes, startNode)
     debug.stop()
 
     displayResults(debug, resultFirst, resultSecond, valueToSearch)

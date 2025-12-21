@@ -1,6 +1,5 @@
-from cryptography.fernet import Fernet
-
-from classes import keyBranchNode, infoBranchNode
+from keyBranchNode import keyBranchNode
+from infoBranchNode import infoBranchNode
 
 def createCompanyTree():
 

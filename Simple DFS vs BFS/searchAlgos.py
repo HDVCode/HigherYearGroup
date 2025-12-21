@@ -59,6 +59,7 @@ def findValueDFSRecursive(nodes, valueToFind, valueOfNodes, currentNode, visited
 
     for child in nodes[currentNode]:
         result = findValueDFSRecursive(nodes, valueToFind, valueOfNodes, child, visited)
+
         if result != -1:
             return result
 

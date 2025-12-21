@@ -35,7 +35,7 @@ if __name__ == '__main__':
     debug.addFirstFunction(firstTime, firstMem)
 
     secondTime, secondMem = debug.measureWithTimeit(
-        lambda: findValueDFSRecursive(nodes, valueToSearch, valueOfNodes, startNode),
+        lambda: findValueBFS(nodes, valueToSearch, valueOfNodes, startNode),
         runs=1000
     )
     debug.addSecondFunction(secondTime, secondMem)
