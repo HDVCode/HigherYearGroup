@@ -11,53 +11,53 @@ def createCompanyTree():
 
     # -------- HR branch --------
     root.addChild(keyBranchNode("HrHead", b'Nkc3BYWObpxp8OIw7rczeNDUBk5p32TH5JGjWr1TnGg='))
-    root.getChildReferenceDFS("HrHead").addChild(
+    root.getChildReference("HrHead").addChild(
         keyBranchNode("HrManager", b'bj3NHA7TfJu2Z9-0WxC8oBirYGyZQeNzIO-zWc9zpwI=')
     )
-    root.getChildReferenceDFS("HrManager").addChild(keyBranchNode("HrSpecialist1", b'003hgpWjT325hhdYJmP4Sdh2IlMBm4fZndy7dK6N2oE='))
-    root.getChildReferenceDFS("HrManager").addChild(keyBranchNode("HrSpecialist2", b'V_BwxRHo7LbjiBom4BmO-MghBb2VlxJpQfm8TGnkloI='))
-    root.getChildReferenceDFS("HrSpecialist1").addChild(keyBranchNode("HrIntern1", b'rrh8JWDDO3yWW8XutOjoi5DxiDim-_Qokj1IDfwyr5A='))
-    root.getChildReferenceDFS("HrSpecialist2").addChild(keyBranchNode("HrIntern2", b'RVEhAM7UMvHPTzaRBUsBr4NoW-qEQJDU3AOOGQSPgXQ='))
+    root.getChildReference("HrManager").addChild(keyBranchNode("HrSpecialist1", b'003hgpWjT325hhdYJmP4Sdh2IlMBm4fZndy7dK6N2oE='))
+    root.getChildReference("HrManager").addChild(keyBranchNode("HrSpecialist2", b'V_BwxRHo7LbjiBom4BmO-MghBb2VlxJpQfm8TGnkloI='))
+    root.getChildReference("HrSpecialist1").addChild(keyBranchNode("HrIntern1", b'rrh8JWDDO3yWW8XutOjoi5DxiDim-_Qokj1IDfwyr5A='))
+    root.getChildReference("HrSpecialist2").addChild(keyBranchNode("HrIntern2", b'RVEhAM7UMvHPTzaRBUsBr4NoW-qEQJDU3AOOGQSPgXQ='))
 
     # -------- Tech branch --------
     root.addChild(keyBranchNode("LeadDev", b'wsOKyxju9sjgh4wHOIhUECi1TcdQPve90ZI3nmWE5h4='))
 
-    root.getChildReferenceDFS("LeadDev").addChild(keyBranchNode("SeniorDev1", b'F0Jg6hY-ctTB50Cyp81mpOuaorBXgms6xnbeWWO6zRs='))
-    root.getChildReferenceDFS("LeadDev").addChild(keyBranchNode("SeniorDev2", b'4LOj9ah-m0_rv0J7-a6uCOY5t1oAa5RqkiVyH-kt5RA='))
+    root.getChildReference("LeadDev").addChild(keyBranchNode("SeniorDev1", b'F0Jg6hY-ctTB50Cyp81mpOuaorBXgms6xnbeWWO6zRs='))
+    root.getChildReference("LeadDev").addChild(keyBranchNode("SeniorDev2", b'4LOj9ah-m0_rv0J7-a6uCOY5t1oAa5RqkiVyH-kt5RA='))
 
-    root.getChildReferenceDFS("SeniorDev1").addChild(keyBranchNode("JuniorDev1", b'vXKGzn_h-XRRO93lBO3GCcfHguPyZ4lv9jLWtVq_WpI='))
-    root.getChildReferenceDFS("SeniorDev1").addChild(keyBranchNode("JuniorDev2", b'MEbkkKcnreoEYI0UBnDr4fjRbr1XRByVsRFYIw3IzFQ='))
+    root.getChildReference("SeniorDev1").addChild(keyBranchNode("JuniorDev1", b'vXKGzn_h-XRRO93lBO3GCcfHguPyZ4lv9jLWtVq_WpI='))
+    root.getChildReference("SeniorDev1").addChild(keyBranchNode("JuniorDev2", b'MEbkkKcnreoEYI0UBnDr4fjRbr1XRByVsRFYIw3IzFQ='))
 
-    root.getChildReferenceDFS("SeniorDev1").addChild(keyBranchNode("JuniorDev3", b'o7g_nCxY6yYD-muEgHnd9-xVbiJvX1xBUKi5wMCvfig='))
-    root.getChildReferenceDFS("SeniorDev2").addChild(keyBranchNode("JuniorDev4", b'C5svxn37IGr0wjjBejw4JFsqRrmn4NbsRV0HzuTvvHE='))
-    root.getChildReferenceDFS("SeniorDev2").addChild(keyBranchNode("JuniorDev5", b'vApVQH-Eh24GBkWPbPoMoWi3GiYzyNVOz7gczuJQq60='))
+    root.getChildReference("SeniorDev1").addChild(keyBranchNode("JuniorDev3", b'o7g_nCxY6yYD-muEgHnd9-xVbiJvX1xBUKi5wMCvfig='))
+    root.getChildReference("SeniorDev2").addChild(keyBranchNode("JuniorDev4", b'C5svxn37IGr0wjjBejw4JFsqRrmn4NbsRV0HzuTvvHE='))
+    root.getChildReference("SeniorDev2").addChild(keyBranchNode("JuniorDev5", b'vApVQH-Eh24GBkWPbPoMoWi3GiYzyNVOz7gczuJQq60='))
 
     # QA branch
-    root.getChildReferenceDFS("LeadDev").addChild(keyBranchNode("QaLead", b'IiDYf3QzGTUpgimwGdMWvIvD6YZxB2juoMH0E4KwN90='))
-    root.getChildReferenceDFS("QaLead").addChild(keyBranchNode("QaEngineer1", b'JCmrL5NuMIXKw5eht2AQOAi7TOpETkWpR-5kRlxg3UA='))
-    root.getChildReferenceDFS("QaLead").addChild(keyBranchNode("QaEngineer2", b'8k8SD_YfopXNXsFPVO9MWZ6l8NeBAw3fTBfgqQRfWYQ='))
-    root.getChildReferenceDFS("QaLead").addChild(keyBranchNode("QaIntern", b'0h9ds2ffLD2BgUQgkmtggzbXD80glL2r2lkKpS4dtYY='))
+    root.getChildReference("LeadDev").addChild(keyBranchNode("QaLead", b'IiDYf3QzGTUpgimwGdMWvIvD6YZxB2juoMH0E4KwN90='))
+    root.getChildReference("QaLead").addChild(keyBranchNode("QaEngineer1", b'JCmrL5NuMIXKw5eht2AQOAi7TOpETkWpR-5kRlxg3UA='))
+    root.getChildReference("QaLead").addChild(keyBranchNode("QaEngineer2", b'8k8SD_YfopXNXsFPVO9MWZ6l8NeBAw3fTBfgqQRfWYQ='))
+    root.getChildReference("QaLead").addChild(keyBranchNode("QaIntern", b'0h9ds2ffLD2BgUQgkmtggzbXD80glL2r2lkKpS4dtYY='))
 
     # -------- Marketing branch --------
     root.addChild(keyBranchNode("MarketingHead", b'LfHBlbr6Y8anei3azC2GeKp2BxuUl9C0O66Jcg8Z_WQ='))
-    root.getChildReferenceDFS("MarketingHead").addChild(keyBranchNode("MarketingSpecialist1", b'qKGle8bDWWRqzI7a6qW2JVA1Zex2tts0IwaLwydlw5c='))
-    root.getChildReferenceDFS("MarketingHead").addChild(keyBranchNode("MarketingSpecialist2", b'YIgrCUFm0JZBOhTncIjC5aNOC32DK2rTGp95YTnCXws='))
-    root.getChildReferenceDFS("MarketingHead").addChild(keyBranchNode("SocialMediaManager", b'3xZPXaedT3KRyKHppRjJC-kFJGVBbTMOBYMWgNJIY4A='))
-    root.getChildReferenceDFS("SocialMediaManager").addChild(keyBranchNode("ContentCreator1", b'0ZwK6qnin5ePi8jvbg6KxWLzIQH-oL-nk3LAGCfoImk='))
-    root.getChildReferenceDFS("SocialMediaManager").addChild(keyBranchNode("ContentCreator2", b'gwzQjfma35qkms4SEH1s4SwO7aEWBRixVmPpvs0qf_M='))
+    root.getChildReference("MarketingHead").addChild(keyBranchNode("MarketingSpecialist1", b'qKGle8bDWWRqzI7a6qW2JVA1Zex2tts0IwaLwydlw5c='))
+    root.getChildReference("MarketingHead").addChild(keyBranchNode("MarketingSpecialist2", b'YIgrCUFm0JZBOhTncIjC5aNOC32DK2rTGp95YTnCXws='))
+    root.getChildReference("MarketingHead").addChild(keyBranchNode("SocialMediaManager", b'3xZPXaedT3KRyKHppRjJC-kFJGVBbTMOBYMWgNJIY4A='))
+    root.getChildReference("SocialMediaManager").addChild(keyBranchNode("ContentCreator1", b'0ZwK6qnin5ePi8jvbg6KxWLzIQH-oL-nk3LAGCfoImk='))
+    root.getChildReference("SocialMediaManager").addChild(keyBranchNode("ContentCreator2", b'gwzQjfma35qkms4SEH1s4SwO7aEWBRixVmPpvs0qf_M='))
 
     # -------- Sales branch --------
     root.addChild(keyBranchNode("SalesHead", b'8w3J0oAFqGg4RPkLL6ZK8cMzGkKYiN43W6S_8DXTR5M='))
-    root.getChildReferenceDFS("SalesHead").addChild(keyBranchNode("SalesManager1", b'plCN9swfagK63RYCrnfm5tn3Kb4VwE_ALWAI50jY9ok='))
-    root.getChildReferenceDFS("SalesHead").addChild(keyBranchNode("SalesManager2", b'yQiIdWw7mecI6bYjPzuYtffEdYQV2WDurcbL1npK9vU='))
-    root.getChildReferenceDFS("SalesManager1").addChild(keyBranchNode("SalesRep1", b'6NHNZXcyKO9A_e6MkJSW_0JK3K0uY2uPpTrDomzs9Cg='))
-    root.getChildReferenceDFS("SalesManager1").addChild(keyBranchNode("SalesRep2", b'IMmP7--NkY3QoqGvEHJS3UcblL9YnY8kKN6SB2aeBYY='))
-    root.getChildReferenceDFS("SalesManager2").addChild(keyBranchNode("SalesRep3", b'ylq6WNZ4gPn8lqcELC_At3zy4RkZJx4XLN2iRgqpmio='))
+    root.getChildReference("SalesHead").addChild(keyBranchNode("SalesManager1", b'plCN9swfagK63RYCrnfm5tn3Kb4VwE_ALWAI50jY9ok='))
+    root.getChildReference("SalesHead").addChild(keyBranchNode("SalesManager2", b'yQiIdWw7mecI6bYjPzuYtffEdYQV2WDurcbL1npK9vU='))
+    root.getChildReference("SalesManager1").addChild(keyBranchNode("SalesRep1", b'6NHNZXcyKO9A_e6MkJSW_0JK3K0uY2uPpTrDomzs9Cg='))
+    root.getChildReference("SalesManager1").addChild(keyBranchNode("SalesRep2", b'IMmP7--NkY3QoqGvEHJS3UcblL9YnY8kKN6SB2aeBYY='))
+    root.getChildReference("SalesManager2").addChild(keyBranchNode("SalesRep3", b'ylq6WNZ4gPn8lqcELC_At3zy4RkZJx4XLN2iRgqpmio='))
 
     # -------- Finance branch --------
     root.addChild(keyBranchNode("FinanceHead", b'ENZVgBHCLFpK6ijI1d6dQIAS15ukImxtOtDUyMgmo8A='))
-    root.getChildReferenceDFS("FinanceHead").addChild(keyBranchNode("Accountant1", b'H7vOXWRh28mZaWuSAE9V1mdyPeKwSohunNmge4SMRt0='))
-    root.getChildReferenceDFS("FinanceHead").addChild(keyBranchNode("Accountant2", b'cwAK6ySwSetAHUgEP6iWsE09q5yBWqsPQCaAj855rnQ='))
+    root.getChildReference("FinanceHead").addChild(keyBranchNode("Accountant1", b'H7vOXWRh28mZaWuSAE9V1mdyPeKwSohunNmge4SMRt0='))
+    root.getChildReference("FinanceHead").addChild(keyBranchNode("Accountant2", b'cwAK6ySwSetAHUgEP6iWsE09q5yBWqsPQCaAj855rnQ='))
 
     # -------- Operations branch --------
     root.addChild(keyBranchNode("OperationsHead", b'7RTrxe-cuuQhrXvKyqrpCWShFuKzRwg8u9ztEBlx5RA='))

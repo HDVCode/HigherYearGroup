@@ -5,17 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="584c0f47-b1f0-4d0f-9a8e-8b9ac4f2f8fc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Theoretical Key Tree/SoC.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Theoretical Key Tree/encryption.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Theoretical Key Tree/infoBranchNode.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Theoretical Key Tree/keyBranchNode.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/HigherYearGroupMaterial.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HigherYearGroupMaterial.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Simple DFS vs BFS/mainTryMultiple.py" beforeDir="false" afterPath="$PROJECT_DIR$/Simple DFS vs BFS/mainTryMultiple.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Simple DFS vs BFS/mainTryOnce.py" beforeDir="false" afterPath="$PROJECT_DIR$/Simple DFS vs BFS/mainTryOnce.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Simple DFS vs BFS/searchAlgos.py" beforeDir="false" afterPath="$PROJECT_DIR$/Simple DFS vs BFS/searchAlgos.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Theoretical Key Tree/SoC.py" beforeDir="false" afterPath="$PROJECT_DIR$/Theoretical Key Tree/SoC.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Theoretical Key Tree/_init_.py" beforeDir="false" afterPath="$PROJECT_DIR$/Theoretical Key Tree/_init_.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Theoretical Key Tree/classes.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Theoretical Key Tree/keyBranchNode.py" beforeDir="false" afterPath="$PROJECT_DIR$/Theoretical Key Tree/keyBranchNode.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Theoretical Key Tree/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Theoretical Key Tree/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,36 +34,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.classes.executor": "Run",
-    "Python.debugManager.executor": "Run",
-    "Python.degugManager.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.mainTryMultiple.executor": "Run",
-    "Python.mainTryOnce.executor": "Run",
-    "Python.searchAlgos.executor": "Run",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "ai.playground.ignore.import.keys.banner.in.settings": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "F:/PyCharm/HigherYearGroupMaterial/Theoretical Key Tree",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "jupyter.settings.vcs",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.SoC.executor&quot;: &quot;Run&quot;,
+    &quot;Python.classes.executor&quot;: &quot;Run&quot;,
+    &quot;Python.debugManager.executor&quot;: &quot;Run&quot;,
+    &quot;Python.degugManager.executor&quot;: &quot;Run&quot;,
+    &quot;Python.keyBranchNode.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.mainTryMultiple.executor&quot;: &quot;Run&quot;,
+    &quot;Python.mainTryOnce.executor&quot;: &quot;Run&quot;,
+    &quot;Python.searchAlgos.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/PyCharm/HigherYearGroupMaterial/Theoretical Key Tree&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;jupyter.settings.vcs&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\PyCharm\HigherYearGroupMaterial\Theoretical Key Tree" />
@@ -94,7 +89,10 @@
       <updated>1765641869857</updated>
       <workItem from="1765716055966" duration="5000" />
       <workItem from="1766265531947" duration="573000" />
-      <workItem from="1766303851649" duration="11390000" />
+      <workItem from="1766303851649" duration="17705000" />
+      <workItem from="1766352836715" duration="3796000" />
+      <workItem from="1766394289551" duration="5672000" />
+      <workItem from="1766416203426" duration="3424000" />
     </task>
     <servers />
   </component>
@@ -113,7 +111,9 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/HigherYearGroupMaterial$main.coverage" NAME="main Coverage Results" MODIFIED="1766330515892" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Theoretical Key Tree" />
+    <SUITE FILE_PATH="coverage/HigherYearGroupMaterial$main.coverage" NAME="main Coverage Results" MODIFIED="1766419479098" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Theoretical Key Tree" />
+    <SUITE FILE_PATH="coverage/HigherYearGroupMaterial$SoC.coverage" NAME="SoC Coverage Results" MODIFIED="1766397455195" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Theoretical Key Tree" />
     <SUITE FILE_PATH="coverage/HigherYearGroupMaterial$mainTryMultiple.coverage" NAME="mainTryMultiple Coverage Results" MODIFIED="1766266050612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Simple DFS vs BFS" />
+    <SUITE FILE_PATH="coverage/HigherYearGroupMaterial$keyBranchNode.coverage" NAME="keyBranchNode Coverage Results" MODIFIED="1766353876021" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Theoretical Key Tree" />
   </component>
 </project>

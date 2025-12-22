@@ -21,9 +21,6 @@ def decrypt(key, encrypted_message):
 class SoC:
 
     def __init__(self, root):
-        """
-        Initialize SoC with a keyBranchNode tree root
-        """
         self.root = root
         self.nextHandle = 0
         self.nodeMap = {}  # Maps keyTitle to node reference
@@ -91,6 +88,9 @@ class SoC:
 
         targetNode = self.nodeMap[keyTitle]
 
+        targetNode.children = []
+        targetNode.key = None
+
         parent = self.parentMap.get(targetNode)
 
         if parent:
@@ -152,15 +152,38 @@ class SoC:
         return quarantined
 
 
-    def createHoneypot(self, keyTitle):
-        if keyTitle not in self.nodeMap:
-            return False
+    def createHoneypot(self, targetTitle, depth=0):
+        if targetTitle not in self.nodeMap:
+            return None
 
-        honeypotKey = Fernet.generate_key()
-        honeypotNode = keyBranchNode(f"Honeypot_{keyTitle}", honeypotKey)
+        parent = self.nodeMap[targetTitle]
 
-        return honeypotNode
+        rootKey = Fernet.generate_key()
+        root = keyBranchNode(f"Honeypot_{targetTitle}_L0", rootKey)
 
+        parent.addChild(root)
+        self.parentMap[root] = parent
+        self.nodeMap[root.keyTitle] = root
+
+        def build(node, level, path):
+            if level >= depth:
+                return
+
+            for idx, label in enumerate(("A", "B")):
+                key = Fernet.generate_key()
+                childPath = path + label
+                name = f"Honeypot_{targetTitle}_L{level + 1}{childPath}"
+
+                child = keyBranchNode(name, key)
+
+                node.addChild(child)
+                self.parentMap[child] = node
+                self.nodeMap[name] = child
+
+                build(child, level + 1, childPath)
+
+        build(root, 0, "")
+        return root
 
     def getNodeByTitle(self, keyTitle):
         return self.nodeMap.get(keyTitle, None)
@@ -178,7 +201,6 @@ class SoC:
 
         node = self.nodeMap[nodeTitle]
 
-        # Changed: infoNode is now singular, not a list
         if node.infoNode:
             node.infoNode.editKeyUsed(newKeyTitle)
 
@@ -199,16 +221,15 @@ class SoC:
         newKeyBytes = Fernet.generate_key()
         keyNode.key = newKeyBytes
 
-        # Changed: infoNode is now singular, not a list
         if keyNode.infoNode:
             keyNode.infoNode.transferKeyRaw(oldKeyBytes, newKeyBytes)
             keyNode.infoNode.keyUsed = keyTitle
 
         return True
 
-    def migrateKeys(self):
+    def rekeyTree(self):
 
-        backupRoot = self.backupTree()
+        backupRoot = self.root
 
         # Save all info nodes before restoring
         saved_info_nodes = {}
@@ -232,3 +253,44 @@ class SoC:
                 recurse(child)
 
         recurse(self.root)
+
+    def getAllKeysInSubtreeFormatted(self, startNode=None, prefix=""):
+        if startNode is None:
+            startNode = self.root
+
+        result = prefix + startNode.keyTitle + "\n"
+
+        for i, child in enumerate(startNode.children):
+            if i == len(startNode.children) - 1:
+                new_prefix = prefix + "    └── "
+            else:
+                new_prefix = prefix + "    ├── "
+
+            result += self.getAllKeysInSubtreeFormatted(child, new_prefix)
+
+        return result
+
+    def purgeHoneypots(self):
+        def purge_node(node):
+            removed_count = 0
+            # copy list to avoid mutation during iteration
+            for child in list(node.children):
+                removed_count += purge_node(child)
+
+            # if this node is a honeypot, remove from parent and maps
+            if node.keyTitle and node.keyTitle.startswith("Honeypot_"):
+                parent = self.parentMap.get(node)
+                if parent and node in parent.children:
+                    parent.children.remove(node)
+                self.parentMap.pop(node, None)
+                self.nodeMap.pop(node.keyTitle, None)
+                removed_count += 1
+                return removed_count  # stop further processing this node
+            return removed_count
+
+        # start from the root
+        root_node = self.root  # assuming self.root exists
+        return purge_node(root_node)
+
+
+

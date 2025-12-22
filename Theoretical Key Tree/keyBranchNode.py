@@ -57,72 +57,23 @@ class keyBranchNode:
         return decrypt(self.key, message)
 
 
-    def decryptMessageWithSubNodesKeyDFSRecursive(self, message, keyUsed):
-
-        if self.keyTitle == keyUsed:
-
-            result = decrypt(self.key, message)
-
-        else:
-
-            result = -1
-
-            for child in self.children:
-
-                res = child.decryptMessageWithSubNodesKeyDFSRecursive(message, keyUsed)
-
-                if res != -1:
-
-                    result = res
-                    break
-
-        return result
-
-
-    def decryptMessageWithSubNodesKeyDFS(self, message, keyUsed):
-
+    def decryptMessageWithSubNodesKey(self, keyUsed):
         stack = [self]
 
         while stack:
             node = stack.pop()
 
-            if node.keyTitle == keyUsed:
-
-                return decrypt(node.key, message)
+            if node.keyTitle == keyUsed and node.infoNode:
+                return decrypt(
+                    node.key,
+                    node.infoNode.getDataEncrypted()
+                )
 
             stack.extend(reversed(node.children))
 
         return -1
 
-
-    def decryptMessageWithSubNodesKeyBFS(self, message, keyUsed):
-
-        if self.keyTitle == keyUsed:
-
-            result = decrypt(self.key, message)
-
-        else:
-
-            queueOfSubNodesLeft = deque(self.children)
-            result = -1
-
-            while queueOfSubNodesLeft:
-
-                node = queueOfSubNodesLeft.popleft()
-
-                if node.keyTitle == keyUsed:
-
-                    result = decrypt(node.key, message)
-                    break
-
-                for child in node.children:
-
-                    queueOfSubNodesLeft.append(child)
-
-        return result
-
-
-    def getChildReferenceDFS(self, title):
+    def getChildReference(self, title):
         stack = [self]
 
         while stack:
@@ -134,3 +85,4 @@ class keyBranchNode:
             stack.extend(reversed(node.children))
 
         return None
+
